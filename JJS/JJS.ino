@@ -5,6 +5,7 @@ void setup() {
   
   pinMode(buttonPin, INPUT_PULLUP);
   pinMode(/**/, OUTPUT);
+  //hello: test
 }
 
 void loop() {
