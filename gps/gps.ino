@@ -84,3 +84,4 @@ void displayInfo()
 
   Serial.println();
 }
+//added displayInfo to try and make formatting change
