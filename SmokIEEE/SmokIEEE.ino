@@ -4,11 +4,10 @@
  */
 
 #include "DHT.h"
-#include <SoftwareSerial.h>
-
 #define DHTPIN 2
 #define DHTTYPE DHT11
 const int buzzerPin = 8;
+int counter = 0;
 
 static const int RXPin = 4, TXPin = 3;
 static const uint32_t GPSBaud = 9600;
@@ -16,15 +15,10 @@ static const uint32_t GPSBaud = 9600;
 
 DHT dht(DHTPIN, DHTTYPE);
 
-SoftwareSerial ss(RXPin, TXPin);
 
 void setup() 
 {
   Serial.begin(9600);
-  ss.begin(GPSBaud); //initialize the GPS
-  /*while (ss.available() > 0){
-    Serial.write(ss.read());
-  }*/ 
   //gps program will not parse into SmokeIEEE
   dht.begin(); // initialize the sensor
   pinMode(buzzerPin, OUTPUT); // set buzzer as an output
@@ -59,17 +53,28 @@ void loop()
     Serial.print(tempF);
     Serial.println("°F");
 
-    // Buzz if temperature exceeds 80
-    if (tempF > 88) {
-      rickroll();
+    if (tempF>=78 && tempF<=80)
+    {
+      counter++;
+      if (counter%2==1)
+      {
+      beep (25, 1050);
+      }
+      if (counter%2==0)
+      {
+      beep (25, 1100);
+      }
     }
-    else if (tempF > 81) {
-      beep(1000, 200);
-      delay(1000);
-      beep(1000, 250);
-    }
-    else if (tempF > 79) {
-      beep(1000, 200);
+    
+    // Buzz if temperature exceeds 80, once past 85 rickroll
+    else if (tempF > 80) {
+      if (tempF<85)
+      {
+        beep(1000, 5000);
+      }
+      else {
+        rickroll();
+      }
     }
     else {
       noTone(buzzerPin);
@@ -126,12 +131,4 @@ void rickroll() {
   beep(note*1.00/16, b5);
   delay(100);
   beep(note*2.00/16, a4);
-  delay(100);
 }
-
-/*void gps()
-{
-  while (ss.available() > 0){
-  Serial.write(ss.read());
-  }
-}*/

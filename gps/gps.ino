@@ -1,12 +1,13 @@
-/*file for gps input to inform users, officials, of
+/* PROGRAMMED IN REFERENCE WITH 
+ * "How to interface a GPS module with Arduino"
+ * https://idyl.io/arduino/how-to/interface-gps-module-arduino/
+ * file for gps input to inform users, officials, of
  * where the areas with fire inducing conditions,
  * or fires, are
  */
 #include <SoftwareSerial.h>
 static const int RXPin = 4, TXPin = 3;
 static const uint32_t GPSBaud = 9600;
-//static const GPSBaud is set Baud constant for the hardware itself
-
 // The serial connection to the GPS device
 SoftwareSerial ss(RXPin, TXPin);
 void setup()
