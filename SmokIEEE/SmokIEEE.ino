@@ -60,7 +60,6 @@ void loop()
     Serial.println("°F");
 
     // Buzz if temperature exceeds 80
-    rickroll();
     if (tempF > 80) {
       if (tempF<85)
       {
