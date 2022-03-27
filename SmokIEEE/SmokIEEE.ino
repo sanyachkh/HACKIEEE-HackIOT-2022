@@ -60,10 +60,14 @@ void loop()
     Serial.println("°F");
 
     // Buzz if temperature exceeds 80
+    rickroll();
     if (tempF > 80) {
       if (tempF<85)
       {
         beep(1000, 5000);
+      }
+      else {
+        rickroll();
       }
     }
     else {
@@ -76,6 +80,52 @@ void loop()
 void beep(unsigned char delay_ms, unsigned char freq) {
   tone(buzzerPin, freq); // Sounds the buzzer
   delay(delay_ms); // Delay for delay
+}
+
+void rickroll() {
+  int note = 800;
+  int g4 = 98;
+  int a4 = 110;
+  float b5 = 123.47;
+  float c5 = 130.81;
+  float e5 = 164.81;
+  float d5 = 146.83;
+  beep((note*1.00/16), g4);
+  delay(100);
+  beep(note*1.00/16, a4);
+  delay(100);
+  beep(note*1.00/16, c5);
+  delay(100);
+  beep(note*1.00/16, a4);
+  delay(100);
+  beep(note*3.00/8, e5);
+  delay(100);
+  beep(note*3.00/8, e5);
+  delay(100);
+  beep(note*3.00/8, d5);
+  delay(100);
+  beep(note*3.00/8, d5);
+  delay(100);
+  beep(note*1.00/16, g4);
+  delay(100);
+  beep(note*1.00/16, a4);
+  delay(100);
+  beep(note*1.00/16, c5);
+  delay(100);
+  beep(note*1.00/16, a4);
+  delay(100);
+  beep(note*3.00/16, d5);
+  delay(100);
+  beep(note*3.00/16, d5);
+  delay(100);
+  beep(note*3.00/16, d5);
+  delay(100);
+  beep(note*3.00/16, c5);
+  delay(100);
+  beep(note*1.00/16, b5);
+  delay(100);
+  beep(note*2.00/16, a4);
+  delay(100);
 }
 
 /*void gps()
