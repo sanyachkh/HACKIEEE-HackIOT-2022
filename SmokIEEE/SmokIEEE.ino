@@ -61,7 +61,7 @@ void loop()
 
     // Buzz if temperature exceeds 80
     if (tempF > 80) {
-      while (tempF<85)
+      if (tempF<85)
       {
         beep(1000, 5000);
       }
