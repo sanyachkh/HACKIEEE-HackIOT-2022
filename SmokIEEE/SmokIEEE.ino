@@ -6,6 +6,7 @@
 #include "DHT.h"
 #define DHTPIN 2
 #define DHTTYPE DHT11
+const int buttonPin = 7;
 const int buzzerPin = 8;
 int counter = 0;
 
@@ -21,6 +22,7 @@ void setup()
   Serial.begin(9600);
   //gps program will not parse into SmokeIEEE
   dht.begin(); // initialize the sensor
+  pinMode(buttonPin, INPUT_PULLUP);
   pinMode(buzzerPin, OUTPUT); // set buzzer as an output
 }
 
@@ -35,6 +37,9 @@ void loop()
   float tempC = dht.readTemperature();
   // read temperature as Fahrenheit
   float tempF = dht.readTemperature(true);
+
+  // read button state
+  int buttonState = digitalRead(buttonPin);
 
   // check if any reads failed
   if (isnan(humi) || isnan(tempC) || isnan(tempF)) {
@@ -63,6 +68,13 @@ void loop()
       if (counter%2==0)
       {
       beep (25, 1100);
+      }
+
+      // if button is pressed -> delay for a bit
+      if (buttonState != HIGH) {
+        Serial.println("button pressed");
+        noTone(buzzerPin);
+        delay(2000);
       }
     }
     
