@@ -10,7 +10,7 @@ static const uint32_t GPSBaud = 9600;
 SoftwareSerial ss(RXPin, TXPin);
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(115200);//keep 115200 baud because faster speed --> ideally more accuracy ???
   ss.begin(GPSBaud);
 }
 void loop()
