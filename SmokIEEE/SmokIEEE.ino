@@ -60,14 +60,16 @@ void loop()
     Serial.println("°F");
 
     // Buzz if temperature exceeds 80
-    if (tempF > 80) {
-      if (tempF<85)
-      {
-        beep(1000, 5000);
-      }
-      else {
-        rickroll();
-      }
+    if (tempF > 88) {
+      rickroll();
+    }
+    else if (tempF > 81) {
+      beep(1000, 200);
+      delay(1000);
+      beep(1000, 250);
+    }
+    else if (tempF > 79) {
+      beep(1000, 200);
     }
     else {
       noTone(buzzerPin);
